@@ -1,0 +1,15 @@
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('1', 'Sodexo', '244', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('2', 'Paye', '220', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('3', 'Multinet', '232', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('4', 'Nakit', '0', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('5', 'Paye', '220', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('6', 'Sodexo', '244', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('7', 'Multinet', '232', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('8', 'Nakit', '0', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('9', 'Multinet', '232', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('10','Nakit', '0', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('11','Multinet', '232', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('12','Multinet', '232', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('13','Nakit', '0', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('14','Nakit', '0', '2020-10-18 03:00:00','Eat_In');
+INSERT INTO `elk`.`mysql_order` (`order_id`, `order_payment`, `order_tender_type`, `order_time`) VALUES ('15','KrediKarti', '101', '2020-10-18 03:00:00','Eat_In');

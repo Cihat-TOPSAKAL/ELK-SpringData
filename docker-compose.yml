@@ -1,0 +1,55 @@
+version: '3'
+services:
+
+   mysql:
+     container_name: mysql
+     hostname: mysql
+     image: 'mysql/mysql-server:latest'
+     restart: always
+     ports:
+       - '3306:3306'
+     environment:
+       MYSQL_ROOT_PASSWORD: <your_mysql_password>
+
+  elasticsearch:
+    container_name: elasticsearch
+    hostname: elasticsearch
+    image: 'docker.elastic.co/elasticsearch/elasticsearch:7.6.2'
+    restart: always
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+
+  logstash:
+     container_name: logstash
+     hostname: logstash
+     image: 'docker.elastic.co/logstash/logstash:7.6.2'
+     restart: always
+     ports:
+       - '5044:5044'
+     depends_on:
+       - elasticsearch
+     #volumes:
+     # Provide a pipeline configuration for Logstash with a bind-mounted file
+     #  - ./docker-compose/logstash.conf:<your_logstash_config_url>
+     environment:
+       - LOGSTASH_CONFIG_URL=<your_logstash_config_url>
+       - ELASTIC_INDEX=<your_elastic_index>
+       - ELASTIC_DOC_TYPE=<your_elastic_doc_type>
+       - ELASTIC_HOSTS=host.docker.internal
+       - MYSQL_HOST=host.docker.internal
+       - MYSQL_ROOT_USER=<your_mysql_user>
+       - MYSQL_ROOT_PASSWORD=<your_mysql_password>
+
+  kibana:
+      container_name: kibana
+      hostname: kibana
+      image: 'docker.elastic.co/kibana/kibana:7.6.2'
+      restart: always
+      ports:
+        - '5601:5601'
+      depends_on:
+        - elasticsearch
+      environment:
+        - ELASTICSEARCH_URL=http://host.docker.internal:9200
+        - XPACK_MONITORING_ENABLED=false
