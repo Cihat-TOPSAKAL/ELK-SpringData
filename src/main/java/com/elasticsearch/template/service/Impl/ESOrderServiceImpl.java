@@ -36,8 +36,18 @@ public class ESOrderServiceImpl implements OrderService {
         return ESOrder.stream().map(ESOrderConverter:: toDTO).collect(Collectors.toList());
     }
 
-    public List<OrderDTO> findByorderTenderType(int orderTenderType){
-        List<ESOrder> ESOrder = repository.findByorderTenderType(orderTenderType);
-        return ESOrder.stream().map(ESOrderConverter:: toDTO).collect(Collectors.toList());
+    public List<OrderDTO> getSearchAutoComplate(String Value){
+        List<ESOrder> ESOrder = repository.getSearchAutoComplate(Value);
+        return ESOrder.stream().map(ESOrderConverter::toDTO).collect(Collectors.toList());
+    }
+
+    public List<OrderDTO> getDateTimeSearch(String endDate,String startDate){
+        List<ESOrder> ESOrder = repository.getDateTimeSearch(endDate,startDate);
+        return ESOrder.stream().map(ESOrderConverter::toDTO).collect(Collectors.toList());
+    }
+
+    public List<OrderDTO> getFilterSearch(String filterName,String value){
+        List<ESOrder> ESOrder = repository.getFilterSearch(filterName,value);
+        return ESOrder.stream().map(ESOrderConverter::toDTO).collect(Collectors.toList());
     }
 }

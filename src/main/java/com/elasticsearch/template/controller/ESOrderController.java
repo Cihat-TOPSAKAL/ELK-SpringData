@@ -39,24 +39,35 @@ public class ESOrderController {
         }
     }
 
-    /*@GetMapping("/{id}")
-    public ResponseEntity<OrderDTO> findOrder(@PathVariable("id") String Id){
+    @GetMapping("/{Value}")
+    public ResponseEntity<List<OrderDTO>> getSearchAutoComplate(@PathVariable("Value") String Value){
         try{
-            OrderDTO order = elasticSerchOrderServiceImpl.findOrder(Id);
-            return ResponseEntity.ok(order);
-        }catch (Exception ex){
-            throw new ExceptionRunTime(ex.getMessage());
-        }
-    }*/
-
-    @GetMapping("/{orderTenderType}")
-    public ResponseEntity<List<OrderDTO>> findOrderTenderType(@PathVariable("orderTenderType") int orderTenderType){
-        try{
-            List<OrderDTO> order = ESOrderServiceImpl.findByorderTenderType(orderTenderType);
+            List<OrderDTO> order = ESOrderServiceImpl.getSearchAutoComplate(Value);
             return ResponseEntity.ok(order);
         }catch (Exception ex){
             throw new ExceptionRunTime(ex.getMessage());
         }
     }
 
+    @GetMapping("/date")
+    public ResponseEntity<List<OrderDTO>> getDateTimeSearch(@RequestParam( value = "startDate",required = false) String startDate,
+                                                            @RequestParam(value = "endDate",required = false) String endDate){
+        try{
+            List<OrderDTO> order = ESOrderServiceImpl.getDateTimeSearch(endDate,startDate);
+            return ResponseEntity.ok(order);
+        }catch (Exception ex){
+            throw new ExceptionRunTime(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<OrderDTO>> getFilterSearch(@RequestParam( value = "filtername",required = false) String filterName,
+                                                          @RequestParam(value = "value",required = false) String value){
+        try{
+            List<OrderDTO> order = ESOrderServiceImpl.getFilterSearch(filterName,value);
+            return ResponseEntity.ok(order);
+        }catch (Exception ex){
+            throw new ExceptionRunTime(ex.getMessage());
+        }
+    }
 }
