@@ -11,6 +11,10 @@ services:
       - 9300:9300
     networks:
       - elknetwork
+    volumes:
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch-certificates/elastic-certificates.p12:/usr/share/elasticsearch/config/elastic-certificates.p12
+
   kibana:
     image: kibana:7.6.2
     container_name: kibana
@@ -23,6 +27,9 @@ services:
       - elasticsearch
     networks:
       - elknetwork
+    volumes:
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+
   logstash:
     image: logstash:7.6.2
     container_name: logstash
@@ -30,14 +37,15 @@ services:
     ports:
       - 9600:9600
       - 8089:8089
-    environment:
-      - LOGSTASH_CONFIG_URL=<your_logstash_config_url>
     links:
       - elasticsearch:elasticsearch
     depends_on:
       - elasticsearch
     networks:
       - elknetwork
+    volumes:
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+
 networks:
   elknetwork:
     driver: bridge
