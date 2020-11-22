@@ -13,7 +13,6 @@ services:
       - elknetwork
     volumes:
       - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./elasticsearch-certificates/elastic-certificates.p12:/usr/share/elasticsearch/config/elastic-certificates.p12
 
   kibana:
     image: kibana:7.6.2
