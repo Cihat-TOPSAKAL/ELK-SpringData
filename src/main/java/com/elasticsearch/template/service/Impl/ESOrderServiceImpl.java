@@ -31,9 +31,9 @@ public class ESOrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDTO> findOrder(int OrderId){
-        List<ESOrder> ESOrder = repository.findByorderId(OrderId);
-        return ESOrder.stream().map(ESOrderConverter:: toDTO).collect(Collectors.toList());
+    public OrderDTO findOrder(int OrderId){
+        ESOrder esOrder = repository.findByorderId(OrderId);
+        return ESOrderConverter.toDTO(esOrder);
     }
 
     public List<OrderDTO> getSearchAutoComplate(String Value){
@@ -48,6 +48,11 @@ public class ESOrderServiceImpl implements OrderService {
 
     public List<OrderDTO> getFilterSearch(String filterName,String value){
         List<ESOrder> ESOrder = repository.getFilterSearch(filterName,value);
+        return ESOrder.stream().map(ESOrderConverter::toDTO).collect(Collectors.toList());
+    }
+
+    public List<OrderDTO> getSearchPagination(int pageSize){
+        List<ESOrder> ESOrder = repository.getPaginationSearch(pageSize);
         return ESOrder.stream().map(ESOrderConverter::toDTO).collect(Collectors.toList());
     }
 }

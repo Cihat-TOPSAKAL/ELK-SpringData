@@ -9,5 +9,5 @@ public interface OrderRepository extends CrudRepository<Order,Integer> {
     @Override
     List<Order> findAll();
 
-    List<Order> findByorderId(int Id);
+    Order findByorderId(int Id);
 }

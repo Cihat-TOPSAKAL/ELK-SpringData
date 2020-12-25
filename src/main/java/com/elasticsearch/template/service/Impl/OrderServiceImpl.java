@@ -29,9 +29,8 @@ public class OrderServiceImpl implements OrderService {
         return order.stream().map(OrderConverter::toDTO).collect(Collectors.toList());
     }
 
-    @Override
-    public List<OrderDTO> findOrder(int OrderId){
-        List<Order> order = orderRepository.findByorderId(OrderId);
-        return order.stream().map(OrderConverter::toDTO).collect(Collectors.toList());
+    public OrderDTO findOrder(int OrderId){
+        Order order = orderRepository.findByorderId(OrderId);
+        return OrderConverter.toDTO(order);
     }
 }

@@ -4,6 +4,7 @@ services:
     image: elasticsearch:7.6.2
     container_name: elasticsearch
     hostname: elasticsearch
+    restart: always
     environment:
       - "discovery.type=single-node"
     ports:
@@ -44,6 +45,26 @@ services:
       - elknetwork
     volumes:
       - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    depends_on:
+      - elasticsearch
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: elk
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    networks:
+      - elknetwork
+
+volumes:
+  mysql:
 
 networks:
   elknetwork:

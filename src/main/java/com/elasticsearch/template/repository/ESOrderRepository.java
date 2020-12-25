@@ -6,11 +6,11 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 import java.util.List;
 
-public interface ESOrderRepository extends ElasticsearchRepository<ESOrder,Integer> {
+public interface ESOrderRepository extends ElasticsearchRepository<ESOrder, Integer> {
     @Override
     List<ESOrder> findAll();
 
-    List<ESOrder> findByorderId(int orderId);
+    ESOrder findByorderId(int orderId);
 
     // Search for both name and surname
     @Query("{\n" +
@@ -44,5 +44,14 @@ public interface ESOrderRepository extends ElasticsearchRepository<ESOrder,Integ
             " }")
     List<ESOrder> getFilterSearch(String filterName, String value);
 
-
+    @Query("{\n" +
+            " \"match_all\": {},\n" +
+            " \"sort\": [\n" +
+            " {\n" +
+            " \"orderedByName\": \"desc\"\n" +
+            " }\n" +
+            " ],\n" +
+            " \"size\": ?0\n" +
+            " }")
+    List<ESOrder> getPaginationSearch(int pageSize);
 }

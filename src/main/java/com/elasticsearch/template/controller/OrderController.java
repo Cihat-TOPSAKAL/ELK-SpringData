@@ -19,32 +19,23 @@ public class OrderController {
 
     @GetMapping("/")
     public ResponseEntity<List<OrderDTO>> getAllOrder(){
-        try {
-            List<OrderDTO> orderDTOS = orderServiceImpl.allOrder();
-            return ResponseEntity.ok(orderDTOS);
-        }catch (Exception ex){
-            throw new ExceptionRunTime(ex.getMessage());
-        }
+
+        List<OrderDTO> orderDTOS = orderServiceImpl.allOrder();
+        return ResponseEntity.ok(orderDTOS);
     }
 
     @PostMapping("/")
     public ResponseEntity<OrderDTO> saveOrder(@RequestBody OrderDTO orderDTO){
-        try {
-            Order order = OrderConverter.toEntity(orderDTO);
-            OrderDTO orderDto = orderServiceImpl.addOrder(order);
-            return ResponseEntity.ok(orderDto);
-        }catch (Exception ex){
-            throw new ExceptionRunTime(ex.getMessage());
-        }
+
+        Order order = OrderConverter.toEntity(orderDTO);
+        OrderDTO orderDto = orderServiceImpl.addOrder(order);
+        return ResponseEntity.ok(orderDto);
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<List<OrderDTO>> findOrder(@PathVariable("orderId") int orderId){
-        try{
-            List<OrderDTO> order = orderServiceImpl.findOrder(orderId);
-            return ResponseEntity.ok(order);
-        }catch (Exception ex){
-            throw new ExceptionRunTime(ex.getMessage());
-        }
+    public ResponseEntity<OrderDTO> findOrder(@PathVariable("orderId") int orderId){
+
+        OrderDTO order = orderServiceImpl.findOrder(orderId);
+        return ResponseEntity.ok(order);
     }
 }
