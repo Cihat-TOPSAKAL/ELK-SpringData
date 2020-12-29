@@ -49,6 +49,7 @@ services:
   mysql:
     image: mysql:latest
     restart: always
+    container_name: mysql
     depends_on:
       - elasticsearch
     volumes:
@@ -56,12 +57,25 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: elk
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: <your-mysql-root-password>
+      MYSQL_DATABASE: <your-mysql-database>
+      MYSQL_USER: <your-mysql-username>
+      MYSQL_PASSWORD: <your-mysql-password>
     networks:
       - elknetwork
+
+  springservice:
+    image: springservice
+    build: .
+    container_name: springservice
+    restart: always
+    depends_on:
+      - elasticsearch
+      - mysql
+    ports:
+      - 8090:8090
+    networks:
+     - elknetwork
 
 volumes:
   mysql:
