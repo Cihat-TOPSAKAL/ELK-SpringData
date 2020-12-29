@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/elk")
+@RequestMapping("/api/elk")
 @RestController
 public class ESOrderController {
 

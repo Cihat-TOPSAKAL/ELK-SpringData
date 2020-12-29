@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RequestMapping("/mysql")
+@RequestMapping("/api/mysql")
 @RestController
 public class OrderController {
 
