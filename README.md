@@ -30,7 +30,7 @@ Tutorial Folder'ı altında bulunan
               MYSQL_PASSWORD: <your-mysql-password>
 
 4. run.sh'ı çalıştırın.
-
+   
        $ sh run.sh
 
 
